@@ -126,6 +126,57 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		610163A927F8E0D40011D4E9 /* CContract */ = {
+			isa = PBXGroup;
+			children = (
+				61F159FA27F7D1AD00F24E05 /* CryptoContract.swift */,
+			);
+			path = CContract;
+			sourceTree = "<group>";
+		};
+		610163AA27F8E0EC0011D4E9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				61F159FC27F7D1C000F24E05 /* CryptoPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		610163AB27F8E0FD0011D4E9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				61F159FE27F7D1E200F24E05 /* CryptoRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		610163AC27F8E10E0011D4E9 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				61F15A0027F7D1F900F24E05 /* CryptoInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		610163AD27F8E1230011D4E9 /* AppSupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				61F159BA27F7CC5E00F24E05 /* AppDelegate.swift */,
+				61F159BC27F7CC5E00F24E05 /* SceneDelegate.swift */,
+			);
+			path = AppSupportFiles;
+			sourceTree = "<group>";
+		};
+		610163AE27F8E1630011D4E9 /* MainStoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				61F159C027F7CC5E00F24E05 /* Main.storyboard */,
+				61F159C327F7CC6000F24E05 /* Assets.xcassets */,
+				61F159C527F7CC6000F24E05 /* LaunchScreen.storyboard */,
+			);
+			path = MainStoryBoard;
+			sourceTree = "<group>";
+		};
 		61F159AE27F7CC5E00F24E05 = {
 			isa = PBXGroup;
 			children = (
@@ -151,15 +202,12 @@
 		61F159B927F7CC5E00F24E05 /* ViperWithAPI */ = {
 			isa = PBXGroup;
 			children = (
+				610163AE27F8E1630011D4E9 /* MainStoryBoard */,
+				610163AD27F8E1230011D4E9 /* AppSupportFiles */,
 				61F15A0427F7EDC100F24E05 /* CryptoService */,
 				61F159F327F7CF8200F24E05 /* Managers */,
 				61F159EC27F7CE2400F24E05 /* Common */,
 				61F159EA27F7CCDE00F24E05 /* CryptoMarket */,
-				61F159BA27F7CC5E00F24E05 /* AppDelegate.swift */,
-				61F159BC27F7CC5E00F24E05 /* SceneDelegate.swift */,
-				61F159C027F7CC5E00F24E05 /* Main.storyboard */,
-				61F159C327F7CC6000F24E05 /* Assets.xcassets */,
-				61F159C527F7CC6000F24E05 /* LaunchScreen.storyboard */,
 				61F159C827F7CC6000F24E05 /* Info.plist */,
 			);
 			path = ViperWithAPI;
@@ -185,12 +233,11 @@
 		61F159EA27F7CCDE00F24E05 /* CryptoMarket */ = {
 			isa = PBXGroup;
 			children = (
+				610163AC27F8E10E0011D4E9 /* Interactor */,
+				610163AB27F8E0FD0011D4E9 /* Router */,
+				610163AA27F8E0EC0011D4E9 /* Presenter */,
+				610163A927F8E0D40011D4E9 /* CContract */,
 				61F15A0527F7EE1700F24E05 /* CryptoView */,
-				61F159F827F7D15400F24E05 /* CryptoViewController.swift */,
-				61F159FA27F7D1AD00F24E05 /* CryptoContract.swift */,
-				61F159FC27F7D1C000F24E05 /* CryptoPresenter.swift */,
-				61F159FE27F7D1E200F24E05 /* CryptoRouter.swift */,
-				61F15A0027F7D1F900F24E05 /* CryptoInteractor.swift */,
 			);
 			path = CryptoMarket;
 			sourceTree = "<group>";
@@ -240,6 +287,7 @@
 		61F15A0527F7EE1700F24E05 /* CryptoView */ = {
 			isa = PBXGroup;
 			children = (
+				61F159F827F7D15400F24E05 /* CryptoViewController.swift */,
 				61F15A0827F7EE6B00F24E05 /* CryptoTableViewCell.swift */,
 				61F15A0927F7EE6B00F24E05 /* CryptoTableViewCell.xib */,
 			);
