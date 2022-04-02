@@ -30,40 +30,32 @@ class APIClient {
         guard let url = NSURL(string: urlString , relativeTo: self.baseURL as URL?) else {
             return
         }
-        
         let urlString = url.absoluteString!
-        
-        Alamofire
-            .request(urlString,
-                     method: .get,
-                     encoding: JSONEncoding.default,
-                     headers: headers)
-            .responseJSON { (dataResponse: DataResponse<Any>) in
-                
-                guard let serverResponse = dataResponse.response,
-                    let resultValue = dataResponse.result.value else {
-                        failure(400)
-                        return
+        AF.request(urlString, method: .get, headers: headers).responseJSON { dataResponse in
+            debugPrint(dataResponse)
+            guard let serverResponse = dataResponse.response,
+                  let resultValue = dataResponse.value else {
+                      failure(400)
+                      return
+                  }
+            
+            switch serverResponse.statusCode {
+            case 200, 201:
+                guard let data = dataResponse.data else {
+                    failure(serverResponse.statusCode)
+                    return
                 }
-                
-                switch serverResponse.statusCode {
-                case 200, 201:
-                    guard let data = dataResponse.data else {
-                        failure(serverResponse.statusCode)
-                        return
-                    }
-                    do {
-                        let model = try JSONDecoder().decode(T.self, from: data)
-                        success(serverResponse.statusCode, model)
-                    }
-                    catch {
-                        failure(serverResponse.statusCode)
-                    }
-                    
-                default:
+                do {
+                    let model = try JSONDecoder().decode(T.self, from: data)
+                    success(serverResponse.statusCode, model)
+                }
+                catch {
                     failure(serverResponse.statusCode)
                 }
                 
+            default:
+                failure(serverResponse.statusCode)
+            }
         }
         
     }

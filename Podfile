@@ -16,6 +16,6 @@ target 'ViperWithAPI' do
     # Pods for testing
   end
   pod 'PKHUD'
-  pod 'Alamofire', '4.9'
+  pod 'Alamofire'
 
 end
