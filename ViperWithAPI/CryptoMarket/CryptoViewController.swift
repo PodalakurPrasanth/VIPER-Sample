@@ -20,6 +20,7 @@ class CryptoViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         presenter?.viewDidLoad()
+        self.callForUpdateCrypto()
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -31,6 +32,11 @@ class CryptoViewController: UIViewController {
     // MARK: - Actions
     @objc func refresh() {
         presenter?.refresh()
+    }
+    func callForUpdateCrypto(){
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { timer in
+            self.presenter?.viewDidLoad()
+        }
     }
 }
 extension CryptoViewController: PresenterToViewCryptoProtocol{
@@ -63,19 +69,33 @@ extension CryptoViewController: PresenterToViewCryptoProtocol{
 
 // MARK: - UITableView Delegate & Data Source
 extension CryptoViewController: UITableViewDelegate, UITableViewDataSource {
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching == true {
-             return presenter?.numberOfRowsInSectionForSearch() ?? 0
+        if section == 0 {
+            return 1
+        }else{
+            if searching == true {
+                return presenter?.numberOfRowsInSectionForSearch() ?? 0
+            }
+            return presenter?.numberOfRowsInSection() ?? 0
         }
-        return presenter?.numberOfRowsInSection() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cryptoCell = self.cryptoTableView.dequeueReusableCell(withIdentifier: "CryptoTableViewCell") as? CryptoTableViewCell else {
             return UITableViewCell()
         }
-
+        if indexPath.section == 0 {
+            cryptoCell.cryptoNameLabel.textColor = .white
+            cryptoCell.crypto24ThLabel.textColor = .white
+            cryptoCell.cryptoPriceLabel.textColor = .white
+            cryptoCell.cryptoNameLabel.text = "#  Name"
+            cryptoCell.crypto24ThLabel.text = "24h"
+            cryptoCell.cryptoPriceLabel.text = "Price"
+            return cryptoCell
+        }
         
         return self.configureCell(cell: cryptoCell, indexPath: indexPath)
     }
